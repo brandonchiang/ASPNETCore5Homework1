@@ -35,7 +35,7 @@ namespace ASPNETCore5Homework1.Controllers
         {
             db.Add(model);
             db.SaveChanges();
-            return Created("/api/Coourse/"+model.CourseId,model);
+            return Created("/api/Course/"+model.CourseId,model);
         }
 
         [HttpPut("{id}")]
