@@ -33,7 +33,7 @@ namespace ASPNETCore5Homework1.Controllers
         [HttpPost("")]
         public ActionResult<Person> PostPerson(Person model)
         {
-            db.Add(model);
+            db.People.Add(model);
             db.SaveChanges();
             return Created("/api/Person/"+model.Id,model);
         }

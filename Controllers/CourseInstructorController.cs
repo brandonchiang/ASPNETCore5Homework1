@@ -33,7 +33,7 @@ namespace ASPNETCore5Homework1.Controllers
         [HttpPost("")]
         public ActionResult<CourseInstructor> PostCourseInstructor(CourseInstructor model)
         {
-            db.Add(model);
+            db.CourseInstructors.Add(model);
             db.SaveChanges();
             return Created("/api/CourseInstructor",model);
         }

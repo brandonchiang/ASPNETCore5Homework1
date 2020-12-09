@@ -33,7 +33,7 @@ namespace ASPNETCore5Homework1.Controllers
         [HttpPost("")]
         public ActionResult<OfficeAssignment> PostOfficeAssignment(OfficeAssignment model)
         {
-            db.Add(model);
+            db.OfficeAssignments.Add(model);
             db.SaveChanges();
             return Created("/api/OfficeAssignment/" + model.InstructorId,model);
         }
