@@ -21,19 +21,19 @@ namespace ASPNETCore5Homework1.Controllers
         [HttpGet("")]
         public ActionResult<IEnumerable<Course>> GetCourseModels()
         {
-            return db.Courses.ToList();
+            return db.Course.ToList();
         }
 
         [HttpGet("{id}")]
         public ActionResult<Course> GetCourseModelById(int id)
         {
-            return db.Courses.Find(id);
+            return db.Course.Find(id);
         }
 
         [HttpPost("")]
         public ActionResult<Course> PostCourseModel(Course model)
         {
-            db.Courses.Add(model);
+            db.Course.Add(model);
             db.SaveChanges();
             return Created("/api/Course/"+model.CourseId,model);
         }
@@ -41,7 +41,7 @@ namespace ASPNETCore5Homework1.Controllers
         [HttpPut("{id}")]
         public IActionResult PutCourseModel(int id, CourseUpdateModel model)
         {
-            var c = db.Courses.Find(id);
+            var c = db.Course.Find(id);
             c.InjectFrom(model);
             db.SaveChanges();
             
@@ -51,8 +51,8 @@ namespace ASPNETCore5Homework1.Controllers
         [HttpDelete("{id}")]
         public ActionResult<Course> DeleteCourseModelById(int id)
         {
-            var c = db.Courses.Find(id);
-            db.Courses.Remove(c);
+            var c = db.Course.Find(id);
+            db.Course.Remove(c);
             db.SaveChanges();
             return null;
         }

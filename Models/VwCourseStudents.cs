@@ -6,12 +6,13 @@ using System.Collections.Generic;
 
 namespace ASPNETCore5Homework1.Models
 {
-    public partial class VwCourseStudentCount
+    public partial class VwCourseStudents
     {
         public int? DepartmentId { get; set; }
-        public string Name { get; set; }
+        public string DepartmentName { get; set; }
         public int CourseId { get; set; }
-        public string Title { get; set; }
-        public int? StudentCount { get; set; }
+        public string CourseTitle { get; set; }
+        public int? StudentId { get; set; }
+        public string StudentName { get; set; }
     }
 }

@@ -19,21 +19,21 @@ namespace ASPNETCore5Homework1.Controllers
         }
 
         [HttpGet("")]
-        public ActionResult<IEnumerable<CourseInstructor>> GetCourseInstructors()
+        public ActionResult<IEnumerable<CourseInstructor>> GetCourseInstructor()
         {
-            return db.CourseInstructors.ToList();
+            return db.CourseInstructor.ToList();
         }
 
         [HttpGet("{id}")]
         public ActionResult<CourseInstructor> GetCourseInstructorById(int id)
         {
-            return db.CourseInstructors.Find(id);
+            return db.CourseInstructor.Find(id);
         }
 
         [HttpPost("")]
         public ActionResult<CourseInstructor> PostCourseInstructor(CourseInstructor model)
         {
-            db.CourseInstructors.Add(model);
+            db.CourseInstructor.Add(model);
             db.SaveChanges();
             return Created("/api/CourseInstructor",model);
         }
@@ -41,7 +41,7 @@ namespace ASPNETCore5Homework1.Controllers
         [HttpPut("{id}")]
         public IActionResult PutCourseInstructor(int id, CourseInstructor model)
         {
-            var c = db.CourseInstructors.Find(id);
+            var c = db.CourseInstructor.Find(id);
             c.InjectFrom(model);
             db.SaveChanges();
             return NoContent();
@@ -50,8 +50,8 @@ namespace ASPNETCore5Homework1.Controllers
         [HttpDelete("{id}")]
         public ActionResult<CourseInstructor> DeleteCourseInstructorById(int id)
         {
-            var c = db.CourseInstructors.Find(id);
-            db.CourseInstructors.Remove(c);
+            var c = db.CourseInstructor.Find(id);
+            db.CourseInstructor.Remove(c);
             db.SaveChanges();
             return null;
         }

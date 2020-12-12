@@ -19,21 +19,21 @@ namespace ASPNETCore5Homework1.Controllers
         }
 
         [HttpGet("")]
-        public ActionResult<IEnumerable<OfficeAssignment>> GetOfficeAssignments()
+        public ActionResult<IEnumerable<OfficeAssignment>> GetOfficeAssignment()
         {
-            return db.OfficeAssignments.ToList();
+            return db.OfficeAssignment.ToList();
         }
 
         [HttpGet("{id}")]
         public ActionResult<OfficeAssignment> GetOfficeAssignmentById(int id)
         {
-            return db.OfficeAssignments.Find(id);
+            return db.OfficeAssignment.Find(id);
         }
 
         [HttpPost("")]
         public ActionResult<OfficeAssignment> PostOfficeAssignment(OfficeAssignment model)
         {
-            db.OfficeAssignments.Add(model);
+            db.OfficeAssignment.Add(model);
             db.SaveChanges();
             return Created("/api/OfficeAssignment/" + model.InstructorId,model);
         }
@@ -41,7 +41,7 @@ namespace ASPNETCore5Homework1.Controllers
         [HttpPut("{id}")]
         public IActionResult PutOfficeAssignment(int id, OfficeAssignment model)
         {
-            var c = db.OfficeAssignments.Find(id);
+            var c = db.OfficeAssignment.Find(id);
             c.InjectFrom(c);
             db.SaveChanges();
             return NoContent();
@@ -50,8 +50,8 @@ namespace ASPNETCore5Homework1.Controllers
         [HttpDelete("{id}")]
         public ActionResult<OfficeAssignment> DeleteOfficeAssignmentById(int id)
         {
-            var c = db.OfficeAssignments.Find(id);
-            db.OfficeAssignments.Remove(c);
+            var c = db.OfficeAssignment.Find(id);
+            db.OfficeAssignment.Remove(c);
             db.SaveChanges();
             return null;
         }

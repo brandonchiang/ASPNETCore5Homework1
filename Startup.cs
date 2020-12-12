@@ -31,7 +31,8 @@ namespace ASPNETCore5Homework1
             // using Microsoft.EntityFrameworkCore;
             services.AddDbContext<ContosoUniversityContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+
+            services.AddScoped<ContosoUniversityContextProcedures>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
