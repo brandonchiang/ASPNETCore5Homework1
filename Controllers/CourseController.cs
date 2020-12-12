@@ -23,13 +23,20 @@ namespace ASPNETCore5Homework1.Controllers
         [HttpGet("")]
         public ActionResult<IEnumerable<Course>> GetCourseModels()
         {
-            return db.Course.ToList();
+            return db.Course.Where(x=> x.IsDeleted == false).ToList();
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public ActionResult<Course> GetCourseModelById(int id)
         {
-            return db.Course.Find(id);
+            var c = db.Course.Find(id);
+            if (c != null && c?.IsDeleted == false)
+                return c;
+            else
+                return NotFound();
         }
 
         [HttpPost("")]
@@ -60,7 +67,8 @@ namespace ASPNETCore5Homework1.Controllers
         public ActionResult<Course> DeleteCourseModelById(int id)
         {
             var c = db.Course.Find(id);
-            db.Course.Remove(c);
+            //db.Course.Remove(c);
+            c.IsDeleted = true;
             db.SaveChanges();
             return null;
         }

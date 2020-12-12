@@ -42,6 +42,8 @@ namespace ASPNETCore5Homework1.Models
                     .HasColumnName("DepartmentID")
                     .HasDefaultValueSql("((1))");
 
+                entity.Property(e => e.IsDeleted).HasDefaultValueSql("((0))");
+
                 entity.Property(e => e.Title).HasMaxLength(50);
 
                 entity.HasOne(d => d.Department)
@@ -85,6 +87,8 @@ namespace ASPNETCore5Homework1.Models
                 entity.Property(e => e.DateModified).HasColumnType("datetime");
 
                 entity.Property(e => e.InstructorId).HasColumnName("InstructorID");
+
+                entity.Property(e => e.IsDeleted).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
@@ -162,6 +166,8 @@ namespace ASPNETCore5Homework1.Models
                     .HasMaxLength(50);
 
                 entity.Property(e => e.HireDate).HasColumnType("datetime");
+
+                entity.Property(e => e.IsDeleted).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.LastName)
                     .IsRequired()

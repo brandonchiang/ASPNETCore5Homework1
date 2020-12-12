@@ -26,7 +26,7 @@ namespace ASPNETCore5Homework1.Controllers
         [HttpGet("")]
         public ActionResult<IEnumerable<Department>> GetDepartments()
         {
-            return db.Department.ToList();
+            return db.Department.Where(x=> x.IsDeleted == false).ToList();
         }
 
         // GET: api/Courses/CourseStudents
@@ -38,9 +38,16 @@ namespace ASPNETCore5Homework1.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public ActionResult<Department> GetDepartmentById(int id)
         {
-            return db.Department.Find(id);
+            var c = db.Department.Find(id);
+            if (c != null && c?.IsDeleted == false)
+                return c;
+            else
+                return NotFound();
         }
 
         //[HttpPost("")]

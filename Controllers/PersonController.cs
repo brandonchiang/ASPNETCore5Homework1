@@ -22,13 +22,20 @@ namespace ASPNETCore5Homework1.Controllers
         [HttpGet("")]
         public ActionResult<IEnumerable<Person>> GetPersons()
         {
-            return db.Person.ToList();
+            return db.Person.Where(x => x.IsDeleted == false).ToList();
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public ActionResult<Person> GetPersonById(int id)
         {
-            return db.Person.Find(id);
+            var c = db.Person.Find(id);
+            if (c != null && c?.IsDeleted == false)
+                return c;
+            else
+                return NotFound();
         }
 
         [HttpPost("")]
