@@ -59,6 +59,8 @@ namespace ASPNETCore5Homework1.Controllers
         //}
 
         [HttpPost("")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<Department>> PostDepartmentSP(Department model)
         {
             await sp.Department_Insert(model.Name, model.Budget, model.StartDate, model.InstructorId);
@@ -75,6 +77,8 @@ namespace ASPNETCore5Homework1.Controllers
         //}
 
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<Department>> PutDepartment(int id, Department model)
         {
             await sp.Department_Update(id,model.Name, model.Budget, model.StartDate, model.InstructorId, model.RowVersion);

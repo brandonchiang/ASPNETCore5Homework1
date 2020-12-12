@@ -38,6 +38,7 @@ namespace ASPNETCore5Homework1.Controllers
         public ActionResult<Course> PostCourseModel(Course model)
         {
             db.Course.Add(model);
+            model.DateModified = DateTime.Now;
             db.SaveChanges();
             return Created("/api/Course/"+model.CourseId, model);
         }
@@ -49,6 +50,7 @@ namespace ASPNETCore5Homework1.Controllers
         {
             var c = db.Course.Find(id);
             c.InjectFrom(model);
+            model.DateModified = DateTime.Now;
             db.SaveChanges();
             
             return NoContent();
