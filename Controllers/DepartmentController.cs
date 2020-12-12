@@ -29,6 +29,14 @@ namespace ASPNETCore5Homework1.Controllers
             return db.Department.ToList();
         }
 
+        // GET: api/Courses/CourseStudents
+        [HttpGet("VwDepartmentCourseCount")]
+        public async Task<ActionResult<IEnumerable<VwDepartmentCourseCount>>> GetCourseStudents()
+        {
+            return await db.VwDepartmentCourseCount.FromSqlRaw(
+                "select * from VwDepartmentCourseCount").ToListAsync();
+        }
+
         [HttpGet("{id}")]
         public ActionResult<Department> GetDepartmentById(int id)
         {

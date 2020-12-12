@@ -67,7 +67,8 @@ namespace ASPNETCore5Homework1.Controllers
         [HttpGet("CourseStudentCount")]
         public async Task<ActionResult<IEnumerable<VwCourseStudentCount>>> GetCourseStudentCount()
         {
-            return await db.VwCourseStudentCount.FromSqlInterpolated($@"SELECT * FROM vwCourseStudentCount").ToListAsync();
+            return await db.VwCourseStudentCount.ToListAsync();
+            //return await db.VwCourseStudentCount.FromSqlInterpolated($@"SELECT * FROM vwCourseStudentCount").ToListAsync();
         }
 
 
@@ -75,7 +76,7 @@ namespace ASPNETCore5Homework1.Controllers
         [HttpGet("CourseStudents")]
         public async Task<ActionResult<IEnumerable<VwCourseStudents>>> GetCourseStudents()
         {
-            return await db.VwCourseStudents.FromSqlInterpolated($@"SELECT * FROM vwCourseStudents").ToListAsync();
+            return await db.VwCourseStudents.ToListAsync();
         }
     }
 }
