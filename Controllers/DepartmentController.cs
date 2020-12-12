@@ -7,6 +7,7 @@ using ASPNETCore5Homework1.Models;
 using Omu.ValueInjecter;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Http;
 
 namespace ASPNETCore5Homework1.Controllers
 {
@@ -82,9 +83,14 @@ namespace ASPNETCore5Homework1.Controllers
         //}
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<Department>> DeleteDepartmentById(int id)
         {
             var c = db.Department.Find(id);
+            if (c == null)
+                return NotFound();
 
             OutputParameter<int> returnValue = new OutputParameter<int>();
             await sp.Department_Delete(id, c.RowVersion, returnValue);

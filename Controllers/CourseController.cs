@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ASPNETCore5Homework1.Models;
 using Omu.ValueInjecter;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace ASPNETCore5Homework1.Controllers
 {
@@ -31,14 +33,18 @@ namespace ASPNETCore5Homework1.Controllers
         }
 
         [HttpPost("")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesDefaultResponseType]
         public ActionResult<Course> PostCourseModel(Course model)
         {
             db.Course.Add(model);
             db.SaveChanges();
-            return Created("/api/Course/"+model.CourseId,model);
+            return Created("/api/Course/"+model.CourseId, model);
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesDefaultResponseType]
         public IActionResult PutCourseModel(int id, CourseUpdateModel model)
         {
             var c = db.Course.Find(id);
@@ -55,6 +61,21 @@ namespace ASPNETCore5Homework1.Controllers
             db.Course.Remove(c);
             db.SaveChanges();
             return null;
+        }
+
+        // GET: api/Courses/CourseStudentCount
+        [HttpGet("CourseStudentCount")]
+        public async Task<ActionResult<IEnumerable<VwCourseStudentCount>>> GetCourseStudentCount()
+        {
+            return await db.VwCourseStudentCount.FromSqlInterpolated($@"SELECT * FROM vwCourseStudentCount").ToListAsync();
+        }
+
+
+        // GET: api/Courses/CourseStudents
+        [HttpGet("CourseStudents")]
+        public async Task<ActionResult<IEnumerable<VwCourseStudents>>> GetCourseStudents()
+        {
+            return await db.VwCourseStudents.FromSqlInterpolated($@"SELECT * FROM vwCourseStudents").ToListAsync();
         }
     }
 }

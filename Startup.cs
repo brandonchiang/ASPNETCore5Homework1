@@ -14,6 +14,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using ASPNETCore5Homework1.Models;
 
+
 namespace ASPNETCore5Homework1
 {
     public class Startup
@@ -33,6 +34,7 @@ namespace ASPNETCore5Homework1
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<ContosoUniversityContextProcedures>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
